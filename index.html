@@ -122,7 +122,7 @@ const AUDIENCES = ['General Public','Families','XTO Members Only','AKA Members (
 const MARKETING = ['No','Yes','Event Registration Link','Social Media Only','Flyer Only'];
 
 async function apiFetch() {
-  const res = await fetch(API);
+  const res = await fetch(API, {redirect: 'follow'});
   const data = await res.json();
   return data.map(r => ({ ...r, calendar: r.calendar==='TRUE'||r.calendar===true, survey: r.survey==='TRUE'||r.survey===true, report: r.report==='TRUE'||r.report===true, budget: r.budget ? Number(r.budget) : 0 }));
 }
