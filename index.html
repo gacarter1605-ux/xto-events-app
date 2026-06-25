@@ -127,10 +127,10 @@ async function apiFetch() {
   return data.map(r => ({ ...r, calendar: r.calendar==='TRUE'||r.calendar===true, survey: r.survey==='TRUE'||r.survey===true, report: r.report==='TRUE'||r.report===true, budget: r.budget ? Number(r.budget) : 0 }));
 }
 async function apiSave(event) {
-  await fetch(API, { method:'POST', body: JSON.stringify({ action:'save', event }) });
+  await fetch(API, { method:'POST', redirect:'follow', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({ action:'save', event }) });
 }
 async function apiDelete(id) {
-  await fetch(API, { method:'POST', body: JSON.stringify({ action:'delete', event:{ id } }) });
+  await fetch(API, { method:'POST', redirect:'follow', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({ action:'delete', event:{ id } }) });
 }
 
 const statusClass = s => ({ 'Submitted':'b-submitted','Completed':'b-completed','Needs Info':'b-needs','Approved':'b-approved','Cancelled':'b-cancelled','In Progress':'b-inprogress' }[s] || 'b-submitted');
